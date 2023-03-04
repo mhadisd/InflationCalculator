@@ -25,10 +25,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "vcs.Subversion.SSH"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <option name="sshConnectionType" value="PRIVATE_KEY" />
+    <option name="sshUserName" value="sebasness@gmail.com" />
+    <option name="sshPrivateKeyPath" value="$USER_HOME$/Documents/CIS244_Certificates/id_ed25519.pub" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="" />
@@ -37,6 +43,14 @@
       <option name="presentableId" value="Default" />
       <updated>1677964053690</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial test">
+      <created>1677964593256</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677964593256</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
