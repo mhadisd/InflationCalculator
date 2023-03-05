@@ -2,13 +2,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class InflationAPI {
-    public static void APIcall() {
-        //create Arraylist to store CPI data taken from the API call
-        ArrayList<CPIData> CPI_Data = new ArrayList<CPIData>();
-
+    public static void APIcall() throws IOException {
         //This sets up the formatting for the two calendar variables used in the URL API Call
         //The first one should be the current date when the program is run, and then that string will
         //be converted into a Date instance, then a calendar instance, where a year will be subtracted
@@ -19,13 +18,13 @@ public class InflationAPI {
         LocalDate LastDateOfLastMonth = LastMonth.withDayOfMonth(
                 LastMonth.getMonth().length(LastMonth.isLeapYear()));
         LocalDate LastDateOfLastMonthLastYear = LastDateOfLastMonth.minusYears(1);
-        Scanner fileScan;
         try {
             //concatenate URL string for API call based on date the program is accessed
-            String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv??start_date="
-                    + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth;
-            URL url = new URL(URLString);
-            fileScan = new Scanner(url.openStream());
+            String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv?start_date="
+                    + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth +
+                    "&api_key=HCNh65jaC8fvZjFHvnnr";
+            System.out.println(URLString);
+            CsvReader(URLString);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -34,41 +33,51 @@ public class InflationAPI {
                     TwoMonthsAgo.getMonth().length(TwoMonthsAgo.isLeapYear()));
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv??start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + TwoMonthsAgoLastDay;
-            try {
-                URL url = new URL(URLString);
-                fileScan = new Scanner(url.openStream());
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            CsvReader(URLString);
         }
-//        while (fileScan.hasNext()){
-//            if (fileScan.hasNextDouble()){
-////                CPI_Data.add(new CPIData(fileScan.hasNext(), fileScan.hasNextDouble()));
-//            }
-//        }
     }
-    static class CPIData{
-        private Date date;
-        private double CPI;
+    private static void CsvReader(String urlString) throws IOException {
+        String csvUrl = urlString;
+        String line;
+        String csvSplitBy = ",";
+        ArrayList<DataEntry> data = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(new URL(csvUrl).openStream()));
+            // skip header row
+            br.readLine();
+            while ((line = br.readLine()) != null) {
 
-        CPIData(Date date, double CPI){
-            this.date = date;
-            this.CPI = CPI;
+                String[] values = line.split(csvSplitBy);
+
+                // parse date
+                String date = values[0];
+
+                // parse double
+                double value = Double.parseDouble(values[1]);
+
+                // add data entry to list
+                data.add(new DataEntry(date, value));
+            }
+        // print data entries
+        for (DataEntry entry : data) {
+            System.out.println(entry.getDate() + ": " + entry.getValue());
         }
-        public Date getDate() {
+    }
+    static class DataEntry {
+
+        private String date;
+        private double value;
+
+        public DataEntry(String date, double value) {
+            this.date = date;
+            this.value = value;
+        }
+
+        public String getDate() {
             return date;
         }
 
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public double getCPI() {
-            return CPI;
-        }
-
-        public void setCPI(double CPI) {
-            this.CPI = CPI;
+        public double getValue() {
+            return value;
         }
     }
 }
