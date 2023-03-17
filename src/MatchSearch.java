@@ -21,8 +21,8 @@ public class MatchSearch extends Application {
     public void start(Stage stage) throws Exception {
         // Connect to the database
         String dbUrl = "jdbc:mysql://database-1.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data";
-        String username = "admin";
-        String password = "mum3tbp2UQV_mew3vaw";
+        String username = "*";
+        String password = "*";
         conn = DriverManager.getConnection(dbUrl, username, password);
 
         // Set up the UI
