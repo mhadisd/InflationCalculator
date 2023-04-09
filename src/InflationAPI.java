@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class InflationAPI {
-    public static void APIcall() throws IOException {
+    public static double APIcall() throws IOException {
         //This sets up the formatting for the two calendar variables used in the URL API Call
         //The first one should be the current date when the program is run, and then that string will
         //be converted into a Date instance, then a calendar instance, where a year will be subtracted
@@ -24,7 +24,7 @@ public class InflationAPI {
                     + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth +
                     "&api_key=HCNh65jaC8fvZjFHvnnr";
             System.out.println(URLString);
-            CsvReader(URLString);
+            return InflationCalc(URLString);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -33,10 +33,10 @@ public class InflationAPI {
                     TwoMonthsAgo.getMonth().length(TwoMonthsAgo.isLeapYear()));
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv??start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + TwoMonthsAgoLastDay;
-            CsvReader(URLString);
+            return InflationCalc(URLString);
         }
     }
-    private static void CsvReader(String urlString) throws IOException {
+    private static double InflationCalc(String urlString) throws IOException {
         String csvUrl = urlString;
         String line;
         String csvSplitBy = ",";
@@ -58,11 +58,13 @@ public class InflationAPI {
                 data.add(new DataEntry(date, value));
             }
         // print data entries
-        for (DataEntry entry : data) {
-            System.out.println(entry.getDate() + ": " + entry.getValue());
-        }
+//        for (DataEntry entry : data) {
+//            System.out.println(entry.getDate() + ": " + entry.getValue());
+//        }
+       return (data.get(0).getValue() - data.get(data.size()-1).getValue())/(data.get(data.size()-1).getValue());
     }
-    static class DataEntry {
+
+     static class DataEntry {
 
         private String date;
         private double value;
@@ -80,4 +82,5 @@ public class InflationAPI {
             return value;
         }
     }
+
 }

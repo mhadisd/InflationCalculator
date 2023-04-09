@@ -19,14 +19,16 @@ public class MatchSearch extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // Get the inflation rate
+        double inflationRate = 1 + InflationAPI.APIcall();
         // Connect to the database
-        String dbUrl = "jdbc:mysql://database-1.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data";
+        String dbUrl = "*";
         String username = "*";
         String password = "*";
         conn = DriverManager.getConnection(dbUrl, username, password);
 
         // Set up the UI
-        Label titleLabel = new Label("Match Search");
+        Label titleLabel = new Label("Inflation Calculator");
         titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
         Label searchLabel = new Label("Enter a search term:");
         TextField searchField = new TextField();
@@ -93,7 +95,7 @@ public class MatchSearch extends Application {
             String selectedValue = resultsList.getSelectionModel().getSelectedItem();
             double selectedPrice = Double.parseDouble(getPrice(selectedValue));
             double total = Double.parseDouble(totalValueLabel.getText());
-            total += selectedPrice * 0.05;
+            total += selectedPrice * inflationRate;
             totalValueLabel.setText(String.format("%.2f", total));
             selectedList.getItems().add(selectedValue);
         });
