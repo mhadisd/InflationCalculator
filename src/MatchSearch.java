@@ -1,110 +1,76 @@
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MatchSearch extends Application {
 
     private Connection conn;
+    private double inflationRate;
+
+    {
+        try {
+            inflationRate = 1 + InflationAPI.APIcall();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Get the inflation rate
-        double inflationRate = 1 + InflationAPI.APIcall();
-        // Connect to the database
-        String dbUrl = "*";
-        String username = "*";
-        String password = "*";
-        conn = DriverManager.getConnection(dbUrl, username, password);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MatchSearch.fxml"));
+        MatchSearchController controller = new MatchSearchController();
+        loader.setController(controller);
+        Parent root = loader.load();
 
-        // Set up the UI
-        Label titleLabel = new Label("Inflation Calculator");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-        Label searchLabel = new Label("Enter a search term:");
-        TextField searchField = new TextField();
-        Button searchButton = new Button("Search");
-        ListView<String> resultsList = new ListView<>();
-        Label priceLabel = new Label("Price:");
-        Label priceValueLabel = new Label();
-        Button addButton = new Button("Add to List");
-        ListView<String> selectedList = new ListView<>();
-        Label totalLabel = new Label("Total:");
-        Label totalValueLabel = new Label("0.00");
-
-        GridPane searchGrid = new GridPane();
-        searchGrid.setHgap(10);
-        searchGrid.setVgap(10);
-        searchGrid.setAlignment(Pos.CENTER);
-        searchGrid.add(searchLabel, 0, 0);
-        searchGrid.add(searchField, 1, 0);
-        searchGrid.add(searchButton, 2, 0);
-
-        HBox priceBox = new HBox(10);
-        priceBox.setAlignment(Pos.CENTER);
-        priceBox.getChildren().addAll(priceLabel, priceValueLabel);
-
-        HBox addButtonBox = new HBox(10);
-        addButtonBox.setAlignment(Pos.CENTER);
-        addButtonBox.getChildren().add(addButton);
-
-        VBox resultsBox = new VBox(10);
-        resultsBox.setPadding(new Insets(10));
-        resultsBox.getChildren().addAll(resultsList, priceBox, addButtonBox);
-
-        VBox selectedBox = new VBox(10);
-        selectedBox.setPadding(new Insets(10));
-        selectedBox.getChildren().addAll(selectedList, totalLabel, totalValueLabel);
-
-        HBox mainBox = new HBox(10);
-        mainBox.setPadding(new Insets(10));
-        mainBox.getChildren().addAll(resultsBox, selectedBox);
-
-        VBox rootBox = new VBox(10);
-        rootBox.setAlignment(Pos.CENTER);
-        rootBox.getChildren().addAll(titleLabel, searchGrid, mainBox);
-
-        // Set up the search button action
-        searchButton.setOnAction(event -> {
-            String searchTerm = searchField.getText();
-            ArrayList<String> results = searchDatabase(searchTerm);
-            resultsList.getItems().clear();
-            resultsList.getItems().addAll(results);
-            priceValueLabel.setText("");
-            addButton.setDisable(true);
-        });
-
-        // Set up the results list selection action
-        resultsList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                priceValueLabel.setText(getPrice(newValue));
-                addButton.setDisable(false);
-            }
-        });
-        // Set up the add button action
-        addButton.setOnAction(event -> {
-            String selectedValue = resultsList.getSelectionModel().getSelectedItem();
-            double selectedPrice = Double.parseDouble(getPrice(selectedValue));
-            double total = Double.parseDouble(totalValueLabel.getText());
-            total += selectedPrice * inflationRate;
-            totalValueLabel.setText(String.format("%.2f", total));
-            selectedList.getItems().add(selectedValue);
-        });
-
-        // Set up the stage
-        Scene scene = new Scene(rootBox, 800, 600);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Match Search");
         stage.show();
+
+        conn = DriverManager.getConnection("jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data",
+                "admin",
+                "mum3tbp2UQV_mew3vaw");
+
+        controller.getSearchButton().setOnAction(event -> {
+            String searchTerm = controller.getSearchField().getText();
+            ArrayList<String> results = searchDatabase(searchTerm);
+            controller.getResultsList().getItems().clear();
+            controller.getResultsList().getItems().addAll(results);
+            controller.getPriceValueLabel().setText("");
+            controller.getAddButton().setDisable(true);
+        });
+
+        controller.getResultsList().getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                controller.getPriceValueLabel().setText(getPrice(newValue));
+                controller.getAddButton().setDisable(false);
+            }
+        });
+
+        controller.getAddButton().setOnAction(event -> {
+            String selectedValue = controller.getResultsList().getSelectionModel().getSelectedItem();
+            double selectedPrice = Double.parseDouble(getPrice(selectedValue));
+            double total = Double.parseDouble(controller.getTotalValueLabel().getText());
+            total += selectedPrice * inflationRate;
+            controller.getTotalValueLabel().setText(String.format("%.2f", total));
+            controller.getSelectedList().getItems().add(selectedValue);
+        });
+
+        controller.getRemoveButton().setOnMouseClicked(event -> {
+            String selectedValue = controller.getSelectedList().getSelectionModel().getSelectedItem();
+            if (selectedValue != null) {
+                double selectedPrice = Double.parseDouble(getPrice(selectedValue));
+                double total = Double.parseDouble(controller.getTotalValueLabel().getText());
+                total -= selectedPrice * inflationRate;
+                controller.getTotalValueLabel().setText(String.format("%.2f", total));
+                controller.getSelectedList().getItems().remove(selectedValue);
+            }
+        });
     }
 
     private ArrayList<String> searchDatabase(String searchTerm) {
