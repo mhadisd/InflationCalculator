@@ -32,9 +32,9 @@ public class MatchSearch extends Application {
         stage.setTitle("Match Search");
         stage.show();
 
-        conn = DriverManager.getConnection("jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data",
-                "admin",
-                "mum3tbp2UQV_mew3vaw");
+        conn = DriverManager.getConnection("",
+                "",
+                "");
 
         controller.getSearchButton().setOnAction(event -> {
             String searchTerm = controller.getSearchField().getText();
