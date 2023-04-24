@@ -1,11 +1,12 @@
-import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class MatchSearch extends Application {
 
@@ -32,9 +33,9 @@ public class MatchSearch extends Application {
         stage.setTitle("Match Search");
         stage.show();
 
-        conn = DriverManager.getConnection("",
-                "",
-                "");
+        conn = DriverManager.getConnection("jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data",
+                "*",
+                "*");
 
         controller.getSearchButton().setOnAction(event -> {
             String searchTerm = controller.getSearchField().getText();

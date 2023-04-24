@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="34" layoutY="54" text="Create New Account">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Label layoutX="34" layoutY="108" text="Username:" />
+    <TextField fx:id="usernameField" layoutX="151.0" layoutY="104.0" />
+    <Label layoutX="34" layoutY="149" text="Password:" />
+    <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="137.0" />
+    <Label layoutX="34" layoutY="190" text="Confirm Password:" />
+    <PasswordField fx:id="confirmPasswordField" layoutX="151" layoutY="185" />
+    <Button fx:id="createButton" layoutX="166" layoutY="234" mnemonicParsing="false" text="Create" />
+    <Label fx:id="errorLabel" layoutX="34" layoutY="264" text="Passwords do not match" textFill="RED" />
+</AnchorPane>
