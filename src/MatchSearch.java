@@ -9,6 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class MatchSearch extends Application {
+    private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data";
+    private static final String DB_USER = "Calculator";
+    private static final String DB_PASSWORD = "*";
+
 
     private Connection conn;
     private double inflationRate;
@@ -33,9 +37,9 @@ public class MatchSearch extends Application {
         stage.setTitle("Match Search");
         stage.show();
 
-        conn = DriverManager.getConnection("jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data",
-                "*",
-                "*");
+        conn = DriverManager.getConnection(DB_URL,
+                DB_USER,
+                DB_PASSWORD);
 
         controller.getSearchButton().setOnAction(event -> {
             String searchTerm = controller.getSearchField().getText();

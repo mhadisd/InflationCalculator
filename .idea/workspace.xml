@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet">
-      <change afterPath="$PROJECT_DIR$/src/CreateUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
     </list>
@@ -149,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682356649556</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login">
+      <created>1682377906063</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682377906063</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +176,7 @@
     <MESSAGE value="Connected InflationAPI to the Database connector/JavaFX module" />
     <MESSAGE value="Reworked to use SceneBuilder" />
     <MESSAGE value="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet" />
+    <MESSAGE value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
   </component>
 </project>
