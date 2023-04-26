@@ -23,7 +23,6 @@ public class InflationAPI {
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv?start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth +
                     "&api_key=HCNh65jaC8fvZjFHvnnr";
-            System.out.println(URLString);
             return InflationCalc(URLString);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

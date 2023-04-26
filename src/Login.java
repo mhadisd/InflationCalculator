@@ -14,7 +14,7 @@ import java.util.Base64;
 public class Login extends Application {
     private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Login";
     private static final String DB_USER = "loginagent";
-    private static final String DB_PASSWORD = "*";
+    private static final String DB_PASSWORD = "";
     private static final String SALT = "mysalt";
 
     @Override
@@ -38,6 +38,12 @@ public class Login extends Application {
                 alert.setHeaderText(null);
                 alert.setContentText("Welcome, " + username + "!");
                 alert.showAndWait();
+                MatchSearch matchSearch = new MatchSearch();
+                try {
+                    matchSearch.start(new Stage());
+                } catch (Exception e) {
+                    System.out.println("Error launching Inflation Calculator" + e.getMessage());
+                }
             } else {
                 // TODO: Handle invalid login
                 Alert alert = new Alert(Alert.AlertType.ERROR);
