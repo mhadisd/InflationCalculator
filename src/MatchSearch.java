@@ -9,18 +9,22 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class MatchSearch extends Application {
+
+    // Database connection information
     private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data";
     private static final String DB_USER = "Calculator";
     private static final String DB_PASSWORD = "";
 
-
+    // Instance variables for the inflation rate and database connection
     private Connection conn;
     private double inflationRate;
 
     {
+        // Initialize inflation rate using InflationAPI's API call
         try {
             inflationRate = 1 + InflationAPI.APIcall();
         } catch (IOException e) {
+            // If there is an error, throw a runtime exception
             throw new RuntimeException(e);
         }
     }
@@ -34,13 +38,15 @@ public class MatchSearch extends Application {
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
-        stage.setTitle("Match Search");
+        stage.setTitle("Inflation Calculator");
         stage.show();
 
+        // Open the database connection
         conn = DriverManager.getConnection(DB_URL,
                 DB_USER,
                 DB_PASSWORD);
 
+        // Set up event listeners for the GUI buttons
         controller.getSearchButton().setOnAction(event -> {
             String searchTerm = controller.getSearchField().getText();
             ArrayList<String> results = searchDatabase(searchTerm);
@@ -81,10 +87,12 @@ public class MatchSearch extends Application {
     private ArrayList<String> searchDatabase(String searchTerm) {
         ArrayList<String> results = new ArrayList<>();
         try {
+            // Query the database for products matching the search term
             String query = "SELECT * FROM WMT_Grocery_202209 WHERE PRODUCT_NAME LIKE '%" + searchTerm + "%'";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
+                // Add each matching product to the results list
                 String name = rs.getString("PRODUCT_NAME");
                 String price = rs.getString("PRICE_RETAIL");
                 results.add(name + " (" + price + ")");
@@ -100,6 +108,7 @@ public class MatchSearch extends Application {
         String name = parts[0].trim();
         String query = "SELECT PRICE_RETAIL FROM WMT_Grocery_202209 WHERE PRODUCT_NAME = ?";
         try {
+            // Query the database for the price of a specific product
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
