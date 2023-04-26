@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Made changes to login flow so a succesfull login pulls up the calculator" />
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection">
+      <change afterPath="$PROJECT_DIR$/src/createAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/createAccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/passwordUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreateUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/createAccount.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +29,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -137,7 +152,28 @@
       <option name="project" value="LOCAL" />
       <updated>1682377906063</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Made changes to login flow so a succesfull login pulls up the calculator">
+      <created>1682546268259</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682546268259</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Made changes to login flow so a succesfull login pulls up the calculator">
+      <created>1682546420574</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682546420574</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Commented code">
+      <created>1682547583547</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682547583547</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +198,8 @@
     <MESSAGE value="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet" />
     <MESSAGE value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
     <MESSAGE value="Made changes to login flow so a succesfull login pulls up the calculator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to login flow so a succesfull login pulls up the calculator" />
+    <MESSAGE value="Commented code" />
+    <MESSAGE value="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection" />
   </component>
 </project>

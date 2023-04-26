@@ -7,26 +7,25 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class InflationAPI {
-    public static double APIcall() throws IOException {
-        //This sets up the formatting for the two calendar variables used in the URL API Call
-        //The first one should be the current date when the program is run, and then that string will
-        //be converted into a Date instance, then a calendar instance, where a year will be subtracted
-        //before being converted back into the previous year's date
 
+    public static double APIcall() throws IOException {
+        // Get the current date and calculate the date range for the API call
         LocalDate dateToday = LocalDate.now();
         LocalDate LastMonth = dateToday.minusMonths(1);
-        LocalDate LastDateOfLastMonth = LastMonth.withDayOfMonth(
-                LastMonth.getMonth().length(LastMonth.isLeapYear()));
+        LocalDate LastDateOfLastMonth = LastMonth.withDayOfMonth(LastMonth.getMonth().length(LastMonth.isLeapYear()));
         LocalDate LastDateOfLastMonthLastYear = LastDateOfLastMonth.minusYears(1);
+
         try {
-            //concatenate URL string for API call based on date the program is accessed
+            // Create the URL string for the API call based on the date range
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv?start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth +
                     "&api_key=HCNh65jaC8fvZjFHvnnr";
             return InflationCalc(URLString);
         } catch (MalformedURLException e) {
+            // If there is an error creating the URL, throw a runtime exception
             throw new RuntimeException(e);
         } catch (IOException e) {
+            // If there is an error reading the CSV file, retry the API call with an earlier end date
             LocalDate TwoMonthsAgo = LastMonth.minusMonths(1);
             LocalDate TwoMonthsAgoLastDay = TwoMonthsAgo.withDayOfMonth(
                     TwoMonthsAgo.getMonth().length(TwoMonthsAgo.isLeapYear()));
@@ -35,36 +34,40 @@ public class InflationAPI {
             return InflationCalc(URLString);
         }
     }
+
     private static double InflationCalc(String urlString) throws IOException {
+        // Set up variables for parsing the CSV file
         String csvUrl = urlString;
         String line;
         String csvSplitBy = ",";
         ArrayList<DataEntry> data = new ArrayList<>();
+
+        // Open a buffered reader for the URL stream
         BufferedReader br = new BufferedReader(new InputStreamReader(new URL(csvUrl).openStream()));
-            // skip header row
-            br.readLine();
-            while ((line = br.readLine()) != null) {
 
-                String[] values = line.split(csvSplitBy);
+        // Skip the header row
+        br.readLine();
 
-                // parse date
-                String date = values[0];
+        // Parse the CSV file line by line
+        while ((line = br.readLine()) != null) {
+            String[] values = line.split(csvSplitBy);
 
-                // parse double
-                double value = Double.parseDouble(values[1]);
+            // Parse the date
+            String date = values[0];
 
-                // add data entry to list
-                data.add(new DataEntry(date, value));
-            }
-        // print data entries
-//        for (DataEntry entry : data) {
-//            System.out.println(entry.getDate() + ": " + entry.getValue());
-//        }
-       return (data.get(0).getValue() - data.get(data.size()-1).getValue())/(data.get(data.size()-1).getValue());
+            // Parse the value as a double
+            double value = Double.parseDouble(values[1]);
+
+            // Add the data entry to the list
+            data.add(new DataEntry(date, value));
+        }
+
+        // Calculate the inflation rate as the percentage change between the first and last data points
+        return (data.get(0).getValue() - data.get(data.size()-1).getValue())/(data.get(data.size()-1).getValue());
     }
 
-     static class DataEntry {
-
+    // DataEntry class to represent a single data point from the API call
+    static class DataEntry {
         private String date;
         private double value;
 
@@ -81,5 +84,4 @@ public class InflationAPI {
             return value;
         }
     }
-
 }

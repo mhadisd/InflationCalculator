@@ -16,9 +16,8 @@
     <Label layoutX="34" layoutY="108" text="Username:" />
     <TextField fx:id="usernameField" layoutX="151.0" layoutY="104.0" />
     <Label layoutX="34" layoutY="149" text="Password:" />
-    <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="137.0" />
+    <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="145.0" />
     <Label layoutX="34" layoutY="190" text="Confirm Password:" />
     <PasswordField fx:id="confirmPasswordField" layoutX="151" layoutY="185" />
     <Button fx:id="createButton" layoutX="166" layoutY="234" mnemonicParsing="false" text="Create" />
-    <Label fx:id="errorLabel" layoutX="34" layoutY="264" text="Passwords do not match" textFill="RED" />
 </AnchorPane>
