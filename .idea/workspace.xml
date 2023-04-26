@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
-    </list>
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Made changes to login flow so a succesfull login pulls up the calculator" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,17 +47,6 @@
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="InflationCalculator" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,6 +161,7 @@
     <MESSAGE value="Reworked to use SceneBuilder" />
     <MESSAGE value="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet" />
     <MESSAGE value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
+    <MESSAGE value="Made changes to login flow so a succesfull login pulls up the calculator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes to login flow so a succesfull login pulls up the calculator" />
   </component>
 </project>
