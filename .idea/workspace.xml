@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection">
-      <change afterPath="$PROJECT_DIR$/src/createAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/createAccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passwordUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CreateUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/createAccount.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
-    </list>
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Added parameterization to prevent SQL injection, separated out code for hashing function" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="sebasness &lt;108370195+sebasness@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubProjectSettings">
@@ -173,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682547583547</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added parameterization to prevent SQL injection, separated out code for hashing function">
+      <created>1682639712894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682639712894</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,8 +202,9 @@
     <MESSAGE value="Reworked to use SceneBuilder - added remove button, added rough FXML file and code logic for login screen, but not complete yet" />
     <MESSAGE value="Big rework to add a login screen - tested Database connection to save username and password hash in AWS MySQL server. Still needed is to link the two scenes by pulling up the calculator after a successfull login" />
     <MESSAGE value="Made changes to login flow so a succesfull login pulls up the calculator" />
-    <MESSAGE value="Commented code" />
     <MESSAGE value="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection" />
+    <MESSAGE value="Commented code" />
+    <MESSAGE value="Added parameterization to prevent SQL injection, separated out code for hashing function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added parameterization to prevent SQL injection, separated out code for hashing function" />
   </component>
 </project>
