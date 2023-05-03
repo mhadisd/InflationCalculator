@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Added parameterization to prevent SQL injection, separated out code for hashing function" />
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Simplified hashing function">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/createAccount.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682639712894</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added parameterization to prevent SQL injection, separated out code for hashing function">
+      <created>1682639766347</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682639766347</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Simplified hashing function">
+      <created>1683155731428</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683155731428</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,6 +224,7 @@
     <MESSAGE value="Changed the hash function and separated it out to dynamically hash using the inputted username as a salt. Added more error checking and added parameterization to prevent SQL injection" />
     <MESSAGE value="Commented code" />
     <MESSAGE value="Added parameterization to prevent SQL injection, separated out code for hashing function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added parameterization to prevent SQL injection, separated out code for hashing function" />
+    <MESSAGE value="Simplified hashing function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified hashing function" />
   </component>
 </project>
