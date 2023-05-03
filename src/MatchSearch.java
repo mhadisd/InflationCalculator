@@ -34,6 +34,9 @@ public class MatchSearch extends Application {
         MatchSearchController controller = new MatchSearchController();
         loader.setController(controller);
         Parent root = loader.load();
+        
+        //Add css stylesheet
+        root.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
