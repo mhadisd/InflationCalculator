@@ -24,6 +24,9 @@ public class Login extends Application {
         // Set the LoginController as the controller for the FXML file and load the root node
         loader.setController(controller);
         Parent root = loader.load();
+        
+        //Add css stylesheet
+        root.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
         // Set the title and size of the login screen and show it
         primaryStage.setTitle("Login");
