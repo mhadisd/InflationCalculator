@@ -6,17 +6,12 @@ public class passwordUtils {
 
     public static String hashPassword(String password, String fixedSalt) {
         // Generate a fixed salt based on the person's username
-        byte[] salt = (fixedSalt + password).getBytes();
+        byte[] salt = (fixedSalt).getBytes();
         try {
             // Hash the password using the salt
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(salt);
-            byte[] bytes = md.digest(password.getBytes());
-
-            // Combine the salt and hashed password into a single byte array
-            byte[] saltedHash = new byte[salt.length + bytes.length];
-            System.arraycopy(salt, 0, saltedHash, 0, salt.length);
-            System.arraycopy(bytes, 0, saltedHash, salt.length, bytes.length);
+            byte[] saltedHash = md.digest(password.getBytes());
 
             // Encode the salted hash as a Base64 string and return it
             return Base64.getEncoder().encodeToString(saltedHash);
