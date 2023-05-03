@@ -1,0 +1,32 @@
+.root{
+	-fx-background-color: rgb(52, 149, 235);
+}
+
+
+#label1{
+	-fx-font-size: 400%;
+	-fx-font-family: Impact, Helvetica, 'Times New Roman', serif;
+	-fx-font-weight: 800;
+	
+}
+
+#usernameLabel{
+	-fx-font-size: 200%;
+	-fx-font-family: Impact, Helvetica, 'Times New Roman', serif;
+	-fx-font-weight: 400;
+	
+}
+
+#passwordLabel{
+	-fx-font-size: 200%;
+	-fx-font-family: Impact, Helvetica, 'Times New Roman', serif;
+	-fx-font-weight: 400;
+	
+}
+
+#enterSearchTermLabel{
+	-fx-font-size: 200%;
+	-fx-font-family: Helvetica, 'Times New Roman', serif;
+	-fx-font-weight: 400;
+	
+}
