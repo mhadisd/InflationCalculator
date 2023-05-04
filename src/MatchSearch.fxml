@@ -7,7 +7,7 @@
 <VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <Label text="Inflation Calculator" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Label text="Enter a search term:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="enterSearchTermLabel" text="Enter a search term:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="searchField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <Button text="Search" fx:id="searchButton" GridPane.columnIndex="2" GridPane.rowIndex="0" />
     </GridPane>
