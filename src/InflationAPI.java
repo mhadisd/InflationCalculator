@@ -8,19 +8,21 @@ import java.util.ArrayList;
 
 public class InflationAPI {
 
-    public static double APIcall() throws IOException {
+    public static ArrayList<DataEntry> APIcall() throws IOException {
         // Get the current date and calculate the date range for the API call
         LocalDate dateToday = LocalDate.now();
         LocalDate LastMonth = dateToday.minusMonths(1);
         LocalDate LastDateOfLastMonth = LastMonth.withDayOfMonth(LastMonth.getMonth().length(LastMonth.isLeapYear()));
         LocalDate LastDateOfLastMonthLastYear = LastDateOfLastMonth.minusYears(1);
-
+        
+        
         try {
             // Create the URL string for the API call based on the date range
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv?start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + LastDateOfLastMonth +
                     "&api_key=HCNh65jaC8fvZjFHvnnr";
-            return InflationCalc(URLString);
+            ArrayList<DataEntry> data = ReadData(URLString) ;
+            return data;
         } catch (MalformedURLException e) {
             // If there is an error creating the URL, throw a runtime exception
             throw new RuntimeException(e);
@@ -31,11 +33,12 @@ public class InflationAPI {
                     TwoMonthsAgo.getMonth().length(TwoMonthsAgo.isLeapYear()));
             String URLString = "https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.csv??start_date="
                     + LastDateOfLastMonthLastYear + "&end_date=" + TwoMonthsAgoLastDay;
-            return InflationCalc(URLString);
+            ArrayList<DataEntry> data = ReadData(URLString) ;
+            return data;
         }
     }
 
-    private static double InflationCalc(String urlString) throws IOException {
+    private static ArrayList<DataEntry> ReadData(String urlString) throws IOException {
         // Set up variables for parsing the CSV file
         String csvUrl = urlString;
         String line;
@@ -61,10 +64,14 @@ public class InflationAPI {
             // Add the data entry to the list
             data.add(new DataEntry(date, value));
         }
+		return data;
 
-        // Calculate the inflation rate as the percentage change between the first and last data points
-        return (data.get(0).getValue() - data.get(data.size()-1).getValue())/(data.get(data.size()-1).getValue());
     }
+        
+    public static double InflationCalc(ArrayList<DataEntry> data) {
+    	// Calculate the inflation rate as the percentage change between the first and last data points
+    	return (data.get(0).getValue() - data.get(data.size()-1).getValue())/(data.get(data.size()-1).getValue());
+    }    
 
     // DataEntry class to represent a single data point from the API call
     static class DataEntry {
@@ -85,3 +92,4 @@ public class InflationAPI {
         }
     }
 }
+
