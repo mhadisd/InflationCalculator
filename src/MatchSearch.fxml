@@ -20,8 +20,10 @@
     <VBox alignment="CENTER" spacing="10">
         <ListView fx:id="selectedList" prefHeight="200.0" />
         <HBox alignment="CENTER" spacing="10">
-            <Label text="Total:" />
-            <Label fx:id="totalValueLabel" text="0.00" />
+             <Label text="Total before Inflation:" />
+            <Label fx:id="totalValueLabel1" text="0.00" />
+            <Label text="Total After Inflation:" />
+            <Label fx:id="totalValueLabel2" text="0.00" />
             <Button text="Remove" fx:id="removeButton" />
         </HBox>
     </VBox>
