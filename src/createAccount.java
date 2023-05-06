@@ -14,7 +14,7 @@ public class createAccount {
     // Constants for connecting to the database and hashing passwords
     private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Login";
     private static final String DB_USER = "loginagent";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_PASSWORD = "cis244";
 
     // Method to add a new user to the database
     private static boolean addUser(String username, String password, String confirmPassword) {

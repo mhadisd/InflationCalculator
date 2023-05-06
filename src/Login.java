@@ -12,7 +12,7 @@ public class Login extends Application {
     // Constants for connecting to the database and hashing passwords
     private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Login";
     private static final String DB_USER = "loginagent";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_PASSWORD = "cis244";
 
     @Override
     public void start(Stage primaryStage) throws Exception {

@@ -1,9 +1,9 @@
-import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
 public class MatchSearchController {
 
     @FXML
@@ -31,6 +31,10 @@ public class MatchSearchController {
     
     @FXML
     private Label totalValueLabel1;
+
+    @FXML
+    private Label priceValueLabel;
+
 
     public TextField getSearchField() {
         return searchField;
@@ -67,4 +71,5 @@ public class MatchSearchController {
     public Button getRemoveButton() {
         return removeButton;
     }
+
 }

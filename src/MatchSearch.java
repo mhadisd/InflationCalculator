@@ -26,9 +26,9 @@ public class MatchSearch extends Application {
     {
         // Initialize data entry arraylist using InflationAPI's API call
         try {
-        	 data = InflationAPI.APIcall();
-        	
-        	       } catch (IOException e) {
+            data = InflationAPI.APIcall();
+
+        } catch (IOException e) {
             // If there is an error, throw a runtime exception
             throw new RuntimeException(e);
         }
@@ -37,7 +37,7 @@ public class MatchSearch extends Application {
     {
         inflationRate = 1 + InflationAPI.InflationCalc(data);
     }
-    
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -45,6 +45,9 @@ public class MatchSearch extends Application {
         MatchSearchController controller = new MatchSearchController();
         loader.setController(controller);
         Parent root = loader.load();
+
+        //Add css stylesheet
+        root.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
@@ -142,6 +145,3 @@ public class MatchSearch extends Application {
         return "";
     }
 }
-
-
-
