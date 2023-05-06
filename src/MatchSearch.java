@@ -1,4 +1,5 @@
 import javafx.application.Application;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,25 +9,35 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+//import InflationAPI.ArrayList;
+
+
+
 public class MatchSearch extends Application {
 
     // Database connection information
     private static final String DB_URL = "jdbc:mysql://cis244-prod.c28qsj4v6lea.us-east-2.rds.amazonaws.com:3306/Pricing Data";
     private static final String DB_USER = "Calculator";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_PASSWORD = "cis244";
 
-    // Instance variables for the inflation rate and database connection
+    // Instance variables for the inflation rate and database connection the original data
     private Connection conn;
-    private final double inflationRate;
+    private final  ArrayList<InflationAPI.DataEntry> data;
     {
-        // Initialize inflation rate using InflationAPI's API call
+        // Initialize data entry arraylist using InflationAPI's API call
         try {
-            inflationRate = 1 + InflationAPI.APIcall();
-        } catch (IOException e) {
+        	 data = InflationAPI.APIcall();
+        	
+        	       } catch (IOException e) {
             // If there is an error, throw a runtime exception
             throw new RuntimeException(e);
         }
     }
+    private final double inflationRate;
+    {
+        inflationRate = 1 + InflationAPI.InflationCalc(data);
+    }
+    
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,9 +45,6 @@ public class MatchSearch extends Application {
         MatchSearchController controller = new MatchSearchController();
         loader.setController(controller);
         Parent root = loader.load();
-        
-        //Add css stylesheet
-        root.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
@@ -68,9 +76,12 @@ public class MatchSearch extends Application {
         controller.getAddButton().setOnAction(event -> {
             String selectedValue = controller.getResultsList().getSelectionModel().getSelectedItem();
             double selectedPrice = Double.parseDouble(getPrice(selectedValue));
-            double total = Double.parseDouble(controller.getTotalValueLabel().getText());
-            total += selectedPrice * inflationRate;
-            controller.getTotalValueLabel().setText(String.format("%.2f", total));
+            double total1 = Double.parseDouble(controller.getTotalValueLabel1().getText());
+            double total2 = Double.parseDouble(controller.getTotalValueLabel2().getText());
+            total1 += selectedPrice;
+            controller.getTotalValueLabel1().setText(String.format("%.2f", total1));
+            total2 += selectedPrice * inflationRate;
+            controller.getTotalValueLabel2().setText(String.format("%.2f", total2));
             controller.getSelectedList().getItems().add(selectedValue);
         });
 
@@ -78,9 +89,12 @@ public class MatchSearch extends Application {
             String selectedValue = controller.getSelectedList().getSelectionModel().getSelectedItem();
             if (selectedValue != null) {
                 double selectedPrice = Double.parseDouble(getPrice(selectedValue));
-                double total = Double.parseDouble(controller.getTotalValueLabel().getText());
-                total -= selectedPrice * inflationRate;
-                controller.getTotalValueLabel().setText(String.format("%.2f", total));
+                double total1 = Double.parseDouble(controller.getTotalValueLabel1().getText());
+                double total2 = Double.parseDouble(controller.getTotalValueLabel2().getText());
+                total1 -= selectedPrice;
+                total2 -= selectedPrice * inflationRate;
+                controller.getTotalValueLabel2().setText(String.format("%.2f", total2));
+                controller.getTotalValueLabel1().setText(String.format("%.2f", total1));
                 controller.getSelectedList().getItems().remove(selectedValue);
             }
         });
@@ -128,3 +142,6 @@ public class MatchSearch extends Application {
         return "";
     }
 }
+
+
+
