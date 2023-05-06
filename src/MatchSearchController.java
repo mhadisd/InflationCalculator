@@ -14,10 +14,7 @@ public class MatchSearchController {
 
     @FXML
     private ListView<String> resultsList;
-
-    @FXML
-    private Label priceValueLabel;
-
+    
     @FXML
     private Button addButton;
 
@@ -29,6 +26,11 @@ public class MatchSearchController {
 
     @FXML
     private Button removeButton;
+     @FXML
+    private Label totalValueLabel2;
+    
+    @FXML
+    private Label totalValueLabel1;
 
     public TextField getSearchField() {
         return searchField;
@@ -55,8 +57,11 @@ public class MatchSearchController {
         return selectedList;
     }
 
-    public Label getTotalValueLabel() {
-        return totalValueLabel;
+    public Label getTotalValueLabel2() {
+        return totalValueLabel2;
+    }
+    public Label getTotalValueLabel1() {
+    	return totalValueLabel1;
     }
 
     public Button getRemoveButton() {
