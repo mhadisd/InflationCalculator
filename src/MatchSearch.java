@@ -26,9 +26,9 @@ public class MatchSearch extends Application {
     {
         // Initialize data entry arraylist using InflationAPI's API call
         try {
-            data = InflationAPI.APIcall();
-
-        } catch (IOException e) {
+        	 data = InflationAPI.APIcall();
+        	
+        	       } catch (IOException e) {
             // If there is an error, throw a runtime exception
             throw new RuntimeException(e);
         }
@@ -37,7 +37,7 @@ public class MatchSearch extends Application {
     {
         inflationRate = 1 + InflationAPI.InflationCalc(data);
     }
-
+    
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -45,9 +45,6 @@ public class MatchSearch extends Application {
         MatchSearchController controller = new MatchSearchController();
         loader.setController(controller);
         Parent root = loader.load();
-
-        //Add css stylesheet
-        root.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
@@ -81,10 +78,13 @@ public class MatchSearch extends Application {
             double selectedPrice = Double.parseDouble(getPrice(selectedValue));
             double total1 = Double.parseDouble(controller.getTotalValueLabel1().getText());
             double total2 = Double.parseDouble(controller.getTotalValueLabel2().getText());
+            double total3 = Double.parseDouble(controller.getTotalValueLabel3().getText());
             total1 += selectedPrice;
-            controller.getTotalValueLabel1().setText(String.format("%.2f", total1));
             total2 += selectedPrice * inflationRate;
+            total3 = total2 - total1;
+            controller.getTotalValueLabel1().setText(String.format("%.2f", total1));
             controller.getTotalValueLabel2().setText(String.format("%.2f", total2));
+            controller.getTotalValueLabel3().setText(String.format("%.2f", total3));
             controller.getSelectedList().getItems().add(selectedValue);
         });
 
@@ -94,10 +94,14 @@ public class MatchSearch extends Application {
                 double selectedPrice = Double.parseDouble(getPrice(selectedValue));
                 double total1 = Double.parseDouble(controller.getTotalValueLabel1().getText());
                 double total2 = Double.parseDouble(controller.getTotalValueLabel2().getText());
+                double total3 = Double.parseDouble(controller.getTotalValueLabel3().getText());
                 total1 -= selectedPrice;
                 total2 -= selectedPrice * inflationRate;
+                total3 = total2 - total1;
+                controller.getTotalValueLabel3().setText(String.format("%.2f", total3));
                 controller.getTotalValueLabel2().setText(String.format("%.2f", total2));
                 controller.getTotalValueLabel1().setText(String.format("%.2f", total1));
+                
                 controller.getSelectedList().getItems().remove(selectedValue);
             }
         });
@@ -145,3 +149,6 @@ public class MatchSearch extends Application {
         return "";
     }
 }
+
+
+
