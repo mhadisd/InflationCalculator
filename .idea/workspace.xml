@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Moved CSS into root directory of project">
+    <list default="true" id="b64eb6eb-4b0f-4a38-8730-3940660486f1" name="Changes" comment="Integrated changes from Carlos and Mohammad Hadi, ensured compatibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatchSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatchSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/createAccount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683156887741</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Integrated changes from Carlos and Mohammad Hadi, ensured compatibility">
+      <created>1683386439601</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1683386439601</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +242,7 @@
     <MESSAGE value="Added parameterization to prevent SQL injection, separated out code for hashing function" />
     <MESSAGE value="Simplified hashing function" />
     <MESSAGE value="Moved CSS into root directory of project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved CSS into root directory of project" />
+    <MESSAGE value="Integrated changes from Carlos and Mohammad Hadi, ensured compatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated changes from Carlos and Mohammad Hadi, ensured compatibility" />
   </component>
 </project>
